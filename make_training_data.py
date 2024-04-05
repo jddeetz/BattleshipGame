@@ -95,7 +95,7 @@ def main() -> None:
     Given the two arguments, the total size of the training data will be num_boards x masks_per_board.
 
     Example usage of this code is:
-    python3 make_training_data.py (--num_boards 500) (--masks_per_board 20)
+    python3 make_training_data.py (--num_boards 1000) (--masks_per_board 10)
 
     Where:
         num_boards (int): The total number of game boards to generate. The default value is 500.
