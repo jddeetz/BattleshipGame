@@ -34,12 +34,12 @@ class BattleshipModel(nn.Module):
         super(BattleshipModel, self).__init__()
 
         # Defines all layers
-        self.input_layer_1 = (Conv(1, 8, "relu"))
-        self.hidden_layer_2 = (Conv(8, 16, "relu"))
-        self.hidden_layer_3 = (Conv(16, 32, "relu"))
-        self.hidden_layer_4 = (Conv(32, 16, "relu"))
-        self.hidden_layer_5 = (Conv(16, 8, "relu"))
-        self.output_layer_6 = (Conv(8, 1, "tanh"))
+        self.input_layer_1 = (Conv(1, 4, "relu"))
+        self.hidden_layer_2 = (Conv(4, 8, "relu"))
+        self.hidden_layer_3 = (Conv(8, 16, "relu"))
+        self.hidden_layer_4 = (Conv(16, 8, "relu"))
+        self.hidden_layer_5 = (Conv(8, 4, "relu"))
+        self.output_layer_6 = (Conv(4, 1, "tanh"))
 
     def forward(self, x):
         x1 = self.input_layer_1(x)
