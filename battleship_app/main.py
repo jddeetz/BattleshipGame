@@ -7,7 +7,6 @@ Creates a bokeh application to play battleship.
 import numpy as np
 import pandas as pd
 import pickle
-import time
 
 from bokeh.events import Tap
 from bokeh.layouts import layout, row
