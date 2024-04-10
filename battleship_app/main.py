@@ -170,8 +170,8 @@ def get_about_me_tab():
                               "&#9993 jddeetz@gmail.com")
     resume_div = get_link_div("https://drive.google.com/file/d/1ncRUiNztjxHMr0oaZfhMpGne99yr1Ykq/view?usp=sharing", 
                               "&#9883 My Resume")
-    github_div = get_link_div("https://github.com/jddeetz", 
-                              "&#9758 My Github")
+    github_div = get_link_div("https://github.com/jddeetz/BattleshipGame", 
+                              "&#9758 Github for this Project")
     li_div = get_link_div("https://www.linkedin.com/in/josh-deetz/", 
                           "&#9901 My LinkedIn")
 
@@ -190,8 +190,8 @@ def get_game_tab():
     user_fog_map = np.zeros((10, 10))
 
     # Make grid plots that user sees
-    user_map = make_grid_map(user_nofog_map, user_fog_map, title="Your Board")
-    ai_map = make_grid_map(ai_fog_map, ai_nofog_map, title="Enemy Board (Click on a square to fire a shot!)")
+    user_map = make_grid_map(user_nofog_map, user_fog_map, title="Your Map")
+    ai_map = make_grid_map(ai_fog_map, ai_nofog_map, title="Enemy Map (Click on a square to fire a shot!)")
     map_plots = row(ai_map, user_map)
 
     def callback(event):
@@ -203,7 +203,7 @@ def get_game_tab():
         ai_fog_map[user_shot_y, user_shot_x] = ai_nofog_map[user_shot_y, user_shot_x]
 
         ### Step 2: Update the AI map based on the user selected coordinates
-        ai_map = make_grid_map(ai_fog_map, ai_nofog_map, title="Enemy Board (Click on a square to fire a shot!)")
+        ai_map = make_grid_map(ai_fog_map, ai_nofog_map, title="Enemy Map (Click on a square to fire a shot!)")
         ai_map.on_event(Tap, callback)
         map_plots.children[0] = ai_map
 
@@ -214,7 +214,7 @@ def get_game_tab():
         user_fog_map[ai_shot_x, ai_shot_y] = user_nofog_map[ai_shot_x, ai_shot_y]
 
         ### Step 5: Update the user map based on the AI selected coordinates
-        user_map = make_grid_map(user_nofog_map, user_fog_map, title="Your Board")
+        user_map = make_grid_map(user_nofog_map, user_fog_map, title="Your Map")
         map_plots.children[1] = user_map
 
         ### Step 6: End game conditions
@@ -241,13 +241,18 @@ def get_game_tab():
                 sizing_mode="scale_both", margin=(5, 5, 20, 5))
 
     # Display greeting message
-    instructions1 = Div(text='''OBJECT OF THE GAME: Be the first to sink all 5 of your opponents battleships.''',
+    instructions1 = Div(text='''OBJECT OF THE GAME: Be the first to sink all 5 of your opponents ships. There are five 
+                             ships with lengths of 5, 4, 3, 3, and 2 square spaces. The Enemy Map is covered with fog 
+                             and the ships are initially hidden. Similarly, Your Map is initially covered in fog 
+                             and the AI doesn't know where your ships are. You must fire shots into the fog on the 
+                             Enemy Map to learn if there is a ship at that location.''',
                         width=800, margin=(5, 5, 20, 5))
-    instructions2 = Div(text='''CALL YOUR SHOT!: On your turn, click on a target square on the AI Board. If there is a ship in that
-                             location, it was hit and will be indicated on the map in red. If not, it was a miss, and
-                             your shot sank into the bottomless depths of the sea.''',
+    instructions2 = Div(text='''CALL YOUR SHOT!: On your turn, click on a target square on the Enemy Map. If there is 
+                             a ship in that location, it was hit and will be indicated on the map in red. If not, it 
+                             was a miss, and your shot sank into the bottomless depths of the sea.''',
                         width=800, margin=(5, 5, 20, 5))
-    instructions3 = Div(text='''If you don't like the configuration of your ships, you can reload the page to generate new ones.''',
+    instructions3 = Div(text='''If you don't like the configuration of your ships, you can reload the page to generate 
+                             new ones. Good luck!''',
                         width=800, margin=(5, 5, 20, 5))
 
     # Format front page layout
